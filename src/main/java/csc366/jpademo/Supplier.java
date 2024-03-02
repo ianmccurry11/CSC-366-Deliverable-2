@@ -40,9 +40,9 @@ public class Supplier {
                orphanRemoval = true,      // address records that are no longer attached to a person are removed
                fetch = FetchType.LAZY)
     //@OrderColumn(name = "list_idx")
-    private List<Address> contracts = new ArrayList<>();
+    private List<Contract> contracts = new ArrayList<>();
     
-    public Supplier() { }
+    public Supplier() {}
     
     public Supplier(String name,  String address, int phoneNumber) {
 	this.name = name;
@@ -71,6 +71,19 @@ public class Supplier {
 	this.address = adress;
     }
 
+    public void addContract(Contract c) {
+    contracts.add(c);
+    c.setSupplier(this);
+    }
+
+    public void removeContract(Contract c) {
+    contracts.remove(c);
+    c.setSupplier(null);
+    }
+
+    public List<Contract> getContracts() {
+    return this.contracts;
+    }
     
     // @Override
     // public String toString() {

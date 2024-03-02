@@ -28,6 +28,18 @@ public class Item {
     @Column(name="quantity")
     private int quantity;
 
+    @Column(name="price", nullable = true)
+    private double price;
+
+    @Column(name="tax_rate", nullable = true)
+    private double taxRate;
+
+    @Column(name = "recipe", nullable = true)
+    private String recipe;
+
+    @Column(name = "is_ingredient")
+    private Boolean isIngredient;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="contract_id", nullable = true)
     private Contract contract;
@@ -63,6 +75,46 @@ public class Item {
 
     public void setQuantity(int quantity){
         this.quantity = quantity;
+    }
+
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price = price;
+    } 
+
+    public double getTaxRate(){
+        return taxRate;
+    }
+
+    public void setTaxRate(double taxRate){
+        this.taxRate = taxRate;
+    }
+
+    public String getRecipe(){
+        return recipe;
+    }
+
+    public void setRecipe(String recipe){
+        this.recipe = recipe;
+    }
+
+    public Boolean getIsIngredient(){
+        return isIngredient;
+    }
+
+    public void setIsIngredient(Boolean isIngredient){
+        this.isIngredient = isIngredient;
+    }
+
+    public Contract getContract(){
+        return contract;
+    }
+
+    public void setContract(Contract contract){
+        this.contract = contract;
     }
 
 }

@@ -23,17 +23,20 @@ public class Contract {
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
-    // @OneToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "store_id")
-    // private Store store;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 
     public Contract() {}
-
-    
+    public Contract(Supplier supplier, Store store, Item item){
+        this.supplier = supplier;
+        this.store = store;
+        this.item = item;
+    }
 
     public long getId(){
         return this.id;
@@ -48,13 +51,13 @@ public class Contract {
         this.supplier = supplier;
     }
 
-    // public Store getStore(){
-    //     return this.store;
-    // }
+    public Store getStore(){
+        return this.store;
+    }
 
-    // public void setStore(Store store){
-    //     this.store = store;
-    // }
+    public void setStore(Store store){
+        this.store = store;
+    }
 
     public Item getItem(){
         return this.item;
@@ -63,6 +66,6 @@ public class Contract {
     public void setItem(Item item){
         this.item = item;
     }
-        
 
+        
 }
