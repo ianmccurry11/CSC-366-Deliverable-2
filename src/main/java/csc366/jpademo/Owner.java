@@ -65,7 +65,7 @@ public class Owner {
     public void setCompanyName(String name) {
 	this.company_ownings = name;
     }
-    public String getCompanyOwnings() {
+    public Float getCompanyOwnings() {
 	return this.company_ownings;
     }
     public void setCompanyOwnings(float ownings) {

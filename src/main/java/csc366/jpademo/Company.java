@@ -42,19 +42,19 @@ public class Company {
     
     public Company() { }
     
-    public Company(name, country,) {
+    public Company(String name, String country) {
 	this.name = name;
 	this.country = country;
     }
     
-    public Long getName() {
+    public String getName() {
 	return this.name;
     }
     public void setName(String name) {
 	this.name = name;
     }
 
-    public Long getCountry() {
+    public String getCountry() {
 	return this.country;
     }
     public void setCountry(String country) {
