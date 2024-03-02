@@ -23,32 +23,26 @@ import javax.validation.constraints.NotNull;
     name = "owner"
 )
 public class Owner {
-    @Column(name="person_id")
+    @NotNull
+    @Column(unique=true, name="person_id")
     private Person person_id;
-
+    
+    @NotNull
     @Column(name="company_name")
-    private String company_name;
+    private Company company_name;
     
     @Column(name="company_ownings")
     private String company_ownings;
 
-    @OneToMany(mappedBy = "owner",       // join column should be in *Address*
-               cascade = CascadeType.ALL, // all JPA actions (persist, remove, refresh, merge, detach) propagate to each address
-               orphanRemoval = true,      // address records that are no longer attached to a person are removed
+    @OneToMany(mappedBy = "owner",       // join column should be in *Company*
+               orphanRemoval = true,      // company records that are no longer attached to an owner are removed
                fetch = FetchType.LAZY)
-    //@OrderColumn(name = "list_idx")
-    private List<Address> companies = new ArrayList<>();
+    private List<Company> companies = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "employee")
-    private Set<Owner> employees = new HashSet<>();
-
-    @OneToOne(mappedBy= "person",
-              cascade = CascadeType.ALL,
-              orphanRemoval = true,      
+    @OneToOne(cascade = CascadeType.ALL,
               fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private Owner owner;
-
+    @JoinColumn(name = "id", referencedColumnName = "person_id")
+    private Person person;
     
     public Owner() { }
     
