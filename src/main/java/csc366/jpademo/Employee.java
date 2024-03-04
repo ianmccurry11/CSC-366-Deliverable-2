@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity  // indicates that this class maps to a database table
 @Table(
-    name = "employee",     // may be omitted for default table naming
+    name = "employee"     // may be omitted for default table naming
 )
 public class Employee extends Person {
 
@@ -33,7 +33,8 @@ public class Employee extends Person {
 
     public Employee() { }
     
-    public Employee(String firstName, String lastName, String email, String phoneNo, String username, int SSN, Store store) {
+    public Employee(String firstName, String lastName, String email, String phoneNo, String username,
+                    int SSN, Store store) {
 	    super(firstName, lastName, email, phoneNo, username);
         this.SSN = SSN;
         this.store = store;
@@ -55,7 +56,7 @@ public class Employee extends Person {
     @Override
     public String toString() {
 	StringJoiner sj = new StringJoiner("," , Person.class.getSimpleName() + "[" , "]");
-	sj.add(id.toString()).add(firstName).add(lastName).add("addresses="+addresses.toString());
+	sj.add(super.getId().toString()).add(super.getFirstName()).add(super.getLastName()).add("addresses="+super.getAddresses().toString());
 	return sj.toString();
     }
 

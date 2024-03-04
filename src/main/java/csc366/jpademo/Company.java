@@ -33,10 +33,10 @@ public class Company {
     @OneToMany(mappedBy = "company",       // join column should be in *Owner*
                orphanRemoval = true,      // owner records that are no longer attached to a company are removed
                fetch = FetchType.LAZY)
-    private List<Owner> owners = new ArrayList<>();
+    private List<Person> owners = new ArrayList<>(); //TODO change person to Owner once working
 
-    @OneToMany(mappedBy = "company",       // join column should be in *Store*
-               orphanRemoval = true,      // store records that are no longer attached to a company are removed
+    @OneToMany(mappedBy = "company",
+               orphanRemoval = true,
                fetch = FetchType.LAZY)
     private List<Store> stores = new ArrayList<>();
     

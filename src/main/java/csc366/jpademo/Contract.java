@@ -1,6 +1,5 @@
 package csc366.jpademo;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,11 +30,23 @@ public class Contract {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_manager_id")
+    private LocationManager locationManager;
+
     public Contract() {}
     public Contract(Supplier supplier, Store store, Item item){
         this.supplier = supplier;
         this.store = store;
         this.item = item;
+    }
+
+    public LocationManager getLocationManager() {
+        return locationManager;
+    }
+
+    public void setLocationManager(LocationManager locationManager) {
+        this.locationManager = locationManager;
     }
 
     public long getId(){

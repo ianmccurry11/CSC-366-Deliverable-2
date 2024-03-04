@@ -44,7 +44,7 @@ public class Demo0 {
     @Autowired
     private PersonRepository personRepository;
 
-    private final Person person = new Person("test", "test", "test@calpoly.edu");  // "reference" person
+    private final Person person = new Person("test", "test", "test@calpoly.edu", "test", "(555) 555-5555");  // "reference" person
     
     @BeforeEach
     private void setup() {

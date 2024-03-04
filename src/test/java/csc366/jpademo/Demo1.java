@@ -51,7 +51,7 @@ public class Demo1 {
     @Autowired
     private PersonRepository personRepository;
 
-    private final Person person = new Person("test", "test", "test@calpoly.edu");  // "reference" person
+    private final Person person = new Person("test", "test", "test@calpoly.edu", "test", "(555) 555-5555");  // "reference" person
     private final Address addrCP = new Address("1 Grand Ave", "SLO", "CA", "93407"); 
     
     @BeforeEach
