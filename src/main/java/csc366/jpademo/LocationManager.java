@@ -24,22 +24,20 @@ import javax.validation.constraints.NotNull;
 )
 public class LocationManager extends Employee {
 
-    private Contract contract;
+    @OneToMany(mappedBy = "person",       // join column should be in *Address*
+            cascade = CascadeType.ALL, // all JPA actions (persist, remove, refresh, merge, detach) propagate to each address
+            orphanRemoval = true,      // address records that are no longer attached to a person are removed
+            fetch = FetchType.LAZY)
+    //@OrderColumn(name = "list_idx")
+    private List<Address> addresses = new ArrayList<>();
 
     public LocationManager() { }
     
-    public Employee(String firstName, String lastName, String email, int SSN, Store store, Contract contract) {
-	    super(firstName, lastName, email, SSN, store);
+    public Employee(String firstName, String lastName, String email, String phoneNo, String username, int SSN, Store store, Contract contract) {
+	    super(firstName, lastName, email, SSN, store, phoneNo, username);
         this.contract = contract;
     }
 
-    public Contract getContract() {
-        return contract;
-    }
-
-    public void setContract(Contract contract) {
-        this.contract = contract;
-    }
 
     @Override
     public String toString() {

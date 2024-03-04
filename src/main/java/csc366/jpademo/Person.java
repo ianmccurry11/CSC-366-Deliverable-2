@@ -38,6 +38,12 @@ public class Person {
     @Column(unique=true)
     private String email;
 
+    @Column(unique=true)
+    private String phoneNo;
+
+    @Column(unique=true)
+    private String username;
+
     @OneToMany(mappedBy = "person",       // join column should be in *Address*
                cascade = CascadeType.ALL, // all JPA actions (persist, remove, refresh, merge, detach) propagate to each address
                orphanRemoval = true,      // address records that are no longer attached to a person are removed
@@ -47,10 +53,12 @@ public class Person {
     
     public Person() { }
     
-    public Person(String firstName, String lastName, String email) {
-	this.firstName = firstName;
-	this.lastName = lastName;
-	this.email = email;
+    public Person(String firstName, String lastName, String email, String phoneNo, String username) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.phoneNo = phoneNo;
     }
     
     public Long getId() {
@@ -79,6 +87,22 @@ public class Person {
     }
     public void setEmail(String email) {
 	this.email = email;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void addAddress(Address a) {

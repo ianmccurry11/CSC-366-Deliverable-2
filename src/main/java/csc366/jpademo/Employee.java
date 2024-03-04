@@ -33,8 +33,8 @@ public class Employee extends Person {
 
     public Employee() { }
     
-    public Employee(String firstName, String lastName, String email, int SSN, Store store) {
-	    super(firstName, lastName, email);
+    public Employee(String firstName, String lastName, String email, String phoneNo, String username, int SSN, Store store) {
+	    super(firstName, lastName, email, phoneNo, username);
         this.SSN = SSN;
         this.store = store;
     }
