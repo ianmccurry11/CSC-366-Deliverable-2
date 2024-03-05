@@ -17,9 +17,9 @@ public class CustomerOrder {
     @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
     private Customer customer;
 
-//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
-//    @JoinColumn(name = "StoreID", referencedColumnName = "ID")
-//    private Store store;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
+    @JoinColumn(name = "StoreID", referencedColumnName = "ID")
+    private Store store;
 
     @Column(name = "OrderDate")
     private Date orderDate;
@@ -30,12 +30,9 @@ public class CustomerOrder {
     @Column(name = "PaymentType")
     private String paymentType;
 
-    public CustomerOrder() {
-    }
-
-    public CustomerOrder(Customer customer, /*Store store,*/ Date orderDate, double totalAmount, String paymentType) {
+    public CustomerOrder(Customer customer, Store store, Date orderDate, double totalAmount, String paymentType) {
         this.customer = customer;
-//        this.store = store;
+        this.store = store;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.paymentType = paymentType;
@@ -57,13 +54,13 @@ public class CustomerOrder {
         this.customer = customer;
     }
 
-//    public Store getStore() {
-//        return store;
-//    }
-//
-//    public void setStore(Store store) {
-//        this.store = store;
-//    }
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
 
     public Date getOrderDate() {
         return orderDate;
@@ -96,12 +93,12 @@ public class CustomerOrder {
         CustomerOrder that = (CustomerOrder) o;
         return Double.compare(getTotalAmount(), that.getTotalAmount()) == 0 && Objects.equals(getOrderID(),
                 that.getOrderID()) && Objects.equals(getCustomer(), that.getCustomer()) &&
-                /*Objects.equals(store, that.store) &&*/ Objects.equals(getOrderDate(), that.getOrderDate()) &&
+                Objects.equals(store, that.store) && Objects.equals(getOrderDate(), that.getOrderDate()) &&
                 Objects.equals(getPaymentType(), that.getPaymentType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getOrderID(), getCustomer(), /*store,*/ getOrderDate(), getTotalAmount(), getPaymentType());
+        return Objects.hash(getOrderID(), getCustomer(), getStore(), getOrderDate(), getTotalAmount(), getPaymentType());
     }
 }

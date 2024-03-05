@@ -23,7 +23,6 @@ public class Customer {
 
     @Id
     @Column(name = "CustomerID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerID;
 
     @Column(name = "RewardsOption")
@@ -38,9 +37,6 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CustomerOrder> customerOrders = new ArrayList<>();
-
-    public Customer() {
-    }
 
     public Customer(boolean rewardsOption, String paymentType, Person person) {
         this.rewardsOption = rewardsOption;
@@ -71,14 +67,6 @@ public class Customer {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     public List<CustomerOrder> getCustomerOrders() {
