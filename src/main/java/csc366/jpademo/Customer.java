@@ -98,4 +98,20 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(getCustomerID(), isRewardsOption(), getPaymentType(), person);
     }
+
+    public String getFirstName() {
+        return person.getFirstName();
+    }
+
+    public String getLastName() {
+        return person.getLastName();
+    }
+
+    public void setFirstName(String firstName) {
+        person.setLastName(firstName);
+    }
+
+    public void setLastName(String lastName) {
+        person.setLastName(lastName);
+    }
 }
