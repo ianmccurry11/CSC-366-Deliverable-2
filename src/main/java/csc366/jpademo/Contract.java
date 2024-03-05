@@ -33,7 +33,7 @@ public class Contract {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_manager_id")
-    private LocationManager lm;
+    private Person locationManager;
 
     public Contract() {}
     public Contract(Supplier supplier, Store store, Item item){
@@ -71,12 +71,12 @@ public class Contract {
         this.item = item;
     }
 
-    public LocationManager getlocationManager(){
-        return this.LocationManager;
+    public Person getlocationManager(){
+        return this.locationManager;
     }
 
-    public void setItem(LocationManager lm){
-        this.LocationManager = lm;
+    public void setItem(Person lm){
+        this.locationManager = lm;
     }
 
         

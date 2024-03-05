@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.UniqueConstraint;
@@ -54,8 +56,9 @@ public class Person {
     @Column(name="SSN", nullable = true)
     private int SSN;
 
-    @Column(name="StoreId", nullable = true)
-    private int StoreId;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="store_id", nullable = true)
+    private Store store;
 
     @Column(name="CompanyOwnings", nullable = true)
     private double CompanyOwnings;
@@ -149,12 +152,12 @@ public class Person {
         SSN = sSN;
     }
 
-    public int getStoreId() {
-        return StoreId;
+    public Store getStoreId() {
+        return store;
     }
 
-    public void setStoreId(int storeId) {
-        StoreId = storeId;
+    public void setStoreId(Store store) {
+        this.store = store;
     }
 
     public double getCompanyOwnings() {
