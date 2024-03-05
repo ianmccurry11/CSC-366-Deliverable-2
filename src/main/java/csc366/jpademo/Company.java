@@ -43,8 +43,8 @@ public class Company {
     public Company() { }
     
     public Company(String name, String country) {
-	this.name = name;
-	this.country = country;
+        this.name = name;
+        this.country = country;
     }
     
     public String getName() {

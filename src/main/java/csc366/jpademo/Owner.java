@@ -43,9 +43,9 @@ public class Owner {
     public Owner() { }
     
     public Owner(Person person, List<Company> companies, float companyOwnings) {
-	this.person = person;
-    this.companies = companies;
-    this.company_ownings = companyOwnings;
+        this.person = person;
+        this.companies = companies;
+        this.company_ownings = companyOwnings;
     }
     
     // @Override

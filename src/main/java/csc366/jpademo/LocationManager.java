@@ -24,26 +24,28 @@ import javax.validation.constraints.NotNull;
 )
 public class LocationManager extends Employee {
 
-    @OneToMany(mappedBy = "person",
+    @OneToMany(mappedBy = "location_manager_id",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY)
     private List<Contract> contracts = new ArrayList<>();
-
-    public LocationManager() { }
     
     public LocationManager(String firstName, String lastName, String email, String phoneNo, String username,
-                           int SSN, Store store) {
-	    super(firstName, lastName, email, phoneNo, username, SSN, store);
+                           String address, int SSN, Store store) {
+	    super(firstName, lastName, email, phoneNo, username, address, SSN, store);
+    }
+
+    public LocationManager() {
+        super();
     }
 
     public void addContract(Contract c) {
         contracts.add(c);
-        c.setLocationManager(this);
+        c.setItem(this);
     }
     public void removeContract(Contract c) {
         contracts.remove(c);
-        c.setLocationManager(null);
+        c.setItem((LocationManager) null);
     }
     public List<Contract> getContracts() {
         return this.contracts;
@@ -52,9 +54,7 @@ public class LocationManager extends Employee {
 
     @Override
     public String toString() {
-	StringJoiner sj = new StringJoiner("," , Person.class.getSimpleName() + "[" , "]");
-	sj.add(super.getId().toString()).add(super.getFirstName()).add(super.getLastName()).add("addresses="+super.getAddresses().toString());
-	return sj.toString();
+        return super.toString();
     }
 
     @Override

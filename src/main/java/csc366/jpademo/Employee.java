@@ -1,20 +1,6 @@
 package csc366.jpademo;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.StringJoiner;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.OrderColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
 
@@ -28,14 +14,15 @@ public class Employee extends Person {
     @Column(unique=true, name="SSN")
     private int SSN;
 
-    @Column()
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store", nullable = true)
     private Store store;
 
-    public Employee() { }
-    
-    public Employee(String firstName, String lastName, String email, String phoneNo, String username,
+    public Employee(){super();}
+
+    public Employee(String firstName, String lastName, String email, String phoneNo, String username, String address,
                     int SSN, Store store) {
-	    super(firstName, lastName, email, phoneNo, username);
+	    super(firstName, lastName, email, phoneNo, username, address);
         this.SSN = SSN;
         this.store = store;
     }
@@ -55,9 +42,7 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-	StringJoiner sj = new StringJoiner("," , Person.class.getSimpleName() + "[" , "]");
-	sj.add(super.getId().toString()).add(super.getFirstName()).add(super.getLastName()).add("addresses="+super.getAddresses().toString());
-	return sj.toString();
+        return super.toString();
     }
 
     @Override

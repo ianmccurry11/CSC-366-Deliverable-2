@@ -18,7 +18,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table (name="Person")
-
 public class Person {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,37 +36,24 @@ public class Person {
     private String phoneNo;
 
     @Column(name="FirstName")
-    private String FirstName;
+    private String firstName;
 
     @Column(name="LastName")
-    private String LastName;
+    private String lastName;
+
+    public Person(){}
+
+    public Person(String firstName, String lastName, String email, String phoneNo, String username, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNo = phoneNo;
+        this.username = username;
+        this.address = address;
+    }
 
     // @OneToOne(fetch = FetchType.LAZY)
     // @JoinColumn(name="contract_id", nullable = true)
-    
-    @Column(name="RewardsOption", nullable = true)
-    private Boolean RewardsOption;
-
-    @Column(name="PaymentType", nullable = true)
-    private String PaymentType;
-
-    @Column(name="SSN", nullable = true)
-    private int SSN;
-
-    @Column(name="StoreId", nullable = true)
-    private int StoreId;
-
-    @Column(name="CompanyOwnings", nullable = true)
-    private double CompanyOwnings;
-
-    @Column(name="CompanyName", nullable = true)
-    private String companyName;
-
-    @Column(name="name", nullable = true)
-    private String name;
-
-    @Column(name="CountryofIncorperation", nullable = true)
-    private String CountryofIncorperation;
 
     public long getId() {
         return id;
@@ -110,86 +96,19 @@ public class Person {
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
-
-    public Boolean getRewardsOption() {
-        return RewardsOption;
-    }
-
-    public void setRewardsOption(Boolean rewardsOption) {
-        RewardsOption = rewardsOption;
-    }
-
-    public String getPaymentType() {
-        return PaymentType;
-    }
-
-    public void setPaymentType(String paymentType) {
-        PaymentType = paymentType;
-    }
-
-    public int getSSN() {
-        return SSN;
-    }
-
-    public void setSSN(int sSN) {
-        SSN = sSN;
-    }
-
-    public int getStoreId() {
-        return StoreId;
-    }
-
-    public void setStoreId(int storeId) {
-        StoreId = storeId;
-    }
-
-    public double getCompanyOwnings() {
-        return CompanyOwnings;
-    }
-
-    public void setCompanyOwnings(double companyOwnings) {
-        CompanyOwnings = companyOwnings;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCountryofIncorperation() {
-        return CountryofIncorperation;
-    }
-
-    public void setCountryofIncorperation(String countryofIncorperation) {
-        CountryofIncorperation = countryofIncorperation;
-    }
-
-
-
 
 }

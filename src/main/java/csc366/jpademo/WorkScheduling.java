@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
     name = "work_scheduling"
 )
 public class WorkScheduling {
-    
+    @Id
     @NotNull
     @Column(name="start_time")
     private Date start_time;
@@ -34,7 +34,8 @@ public class WorkScheduling {
     @NotNull
     @Column(name="end_time")
     private Date end_time;
-    
+
+    @Id
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_id", referencedColumnName = "id")
     private Employee employee;
@@ -46,10 +47,10 @@ public class WorkScheduling {
     public WorkScheduling() { }
     
     public WorkScheduling(Employee employee, Date start_time, Date end_time, Store store) {
-	this.employee = employee;
-    this.start_time = start_time;
-    this.end_time = end_time;
-    this.store = store;
+        this.employee = employee;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.store = store;
     }
 
     public Employee getEmp() {

@@ -72,12 +72,11 @@ public class Contract {
     }
 
     public LocationManager getlocationManager(){
-        return this.LocationManager;
+        return this.lm;
     }
 
     public void setItem(LocationManager lm){
-        this.LocationManager = lm;
+        this.lm = lm;
     }
-
         
 }
