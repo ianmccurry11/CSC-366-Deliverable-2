@@ -33,12 +33,12 @@ public class Customer {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
     @JoinColumn(name = "CustomerID", referencedColumnName = "ID")
-    private Person person;
+    private PersonR person;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CustomerOrder> customerOrders = new ArrayList<>();
 
-    public Customer(boolean rewardsOption, String paymentType, Person person) {
+    public Customer(boolean rewardsOption, String paymentType, PersonR person) {
         this.rewardsOption = rewardsOption;
         this.paymentType = paymentType;
         this.person = person;
