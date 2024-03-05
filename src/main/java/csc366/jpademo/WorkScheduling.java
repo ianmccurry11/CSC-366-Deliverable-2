@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.OrderColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.UniqueConstraint;
@@ -23,10 +25,7 @@ import javax.validation.constraints.NotNull;
 @Table(
     name = "work_scheduling"
 )
-public class Owner {
-    @NotNull
-    @Column(name="emp_id")
-    private Employee emp_id;
+public class WorkScheduling {
     
     @NotNull
     @Column(name="start_time")
@@ -36,9 +35,6 @@ public class Owner {
     @Column(name="end_time")
     private Date end_time;
     
-    @Column(name="store_id")
-    private int store_id;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_id", referencedColumnName = "id")
     private Employee employee;
@@ -49,18 +45,18 @@ public class Owner {
     
     public WorkScheduling() { }
     
-    public WorkScheduling(int emp_id, Date start_time, Date end_time, int store_id) {
-	this.emp_id = emp_id.id;
+    public WorkScheduling(Employee employee, Date start_time, Date end_time, Store store) {
+	this.employee = employee;
     this.start_time = start_time;
     this.end_time = end_time;
-    this.store_id = store_id;
+    this.store = store;
     }
 
-    public int getEmpID() {
-	return this.emp_id;
+    public Employee getEmp() {
+	return this.employee;
     }
-    public void setEmpID(int id) {
-	this.emp_id = id;
+    public void setEmpID(Employee emp) {
+	this.employee = emp;
     }
     
     public Date getStartTime() {
@@ -77,11 +73,11 @@ public class Owner {
 	this.end_time = end;
     }
 
-    public int getStoreID() {
-	return this.store_id;
+    public Store getStoreID() {
+	return this.store;
     }
-    public void setStoreID(int id) {
-	this.store_id = id;
+    public void setStoreID(Store store) {
+	this.store = store;
     }
 
     @Override

@@ -41,6 +41,8 @@ public class Store {
                fetch = FetchType.LAZY)
     private List<Contract> contracts = new ArrayList<>();
 
+    
+
     public long getId(){
         return id;
     }
