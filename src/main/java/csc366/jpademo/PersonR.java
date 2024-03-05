@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
     name = "person",     // may be omitted for default table naming
     uniqueConstraints = @UniqueConstraint(columnNames={"last_name", "first_name"}) // requires @Column(name=...) 
 )
-public class Person {
+public class PersonR {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -44,9 +44,9 @@ public class Person {
     //@OrderColumn(name = "list_idx")
     private List<Address> addresses = new ArrayList<>();
     
-    public Person() { }
+    public PersonR() { }
     
-    public Person(String firstName, String lastName, String email) {
+    public PersonR(String firstName, String lastName, String email) {
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.email = email;
@@ -94,7 +94,7 @@ public class Person {
     
     @Override
     public String toString() {
-	StringJoiner sj = new StringJoiner("," , Person.class.getSimpleName() + "[" , "]");
+	StringJoiner sj = new StringJoiner("," , PersonR.class.getSimpleName() + "[" , "]");
 	sj.add(id.toString()).add(firstName).add(lastName).add("addresses="+addresses.toString());
 	return sj.toString();
     }
