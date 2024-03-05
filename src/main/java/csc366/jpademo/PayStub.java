@@ -22,9 +22,11 @@ import javax.validation.constraints.NotNull;
 public class PayStub {
     @Id
     private Date pay_period;   // note: no annotation, still included in underlying table
-    private int overtime;
+    private int hours;
     private int wage;
-    private double taxes;
+    private double fed_taxes;
+    private double state_taxes;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empl_id", nullable = true)
@@ -32,18 +34,19 @@ public class PayStub {
     
     public PayStub() { }
     
-    public PayStub(Date pay_period, int overtime, int wage, double taxes) {
+    public PayStub(Date pay_period, int hours, int wage, double fed_taxes, double state_taxes) {
 	this.pay_period = pay_period;
-	this.overtime = overtime;
+	this.hours = hours;
 	this.wage = wage;
-	this.taxes = taxes;
+	this.fed_taxes = fed_taxes;
+    this.state_taxes = state_taxes;
     }
     
-    public int getOvertime() {
-	return overtime;
+    public int getHours() {
+	return hours;
     }
-    public void setOverTime(int overtime) {
-	this.overtime = overtime;
+    public void setHours(int hours) {
+	this.hours = hours;
     }
 
     public Date getpay_period() {
@@ -61,11 +64,17 @@ public class PayStub {
 	this.wage = wage;
     }
 
-    public double gettaxes() {
-	return taxes;
+    public double getFed_Taxes() {
+	return fed_taxes;
     }
-    public void settaxes(double taxes) {
-	this.taxes = taxes;
+    public void setFed_Taxes(double state_taxes) {
+	this.fed_taxes = fed_taxes;
+    }
+    public double getState_Taxes() {
+    return state_taxes;
+    }
+    public void setState_Taxes(double state_taxes) {
+    this.state_taxes = state_taxes;
     }
 
     public Employee getEmpl_id() {
@@ -79,7 +88,7 @@ public class PayStub {
     public String toString()
     {
 	StringJoiner sj = new StringJoiner("," , PayStub.class.getSimpleName() + "[" , "]");
-	sj.add(empl_id.toString()).add(pay_period.toString()).add(String.valueOf(wage)).add(String.valueOf(taxes)).add(String.valueOf(overtime));
+	sj.add(empl_id.toString()).add(pay_period.toString()).add(String.valueOf(wage)).add(String.valueOf(fed_taxes)).add(String.valueOf(state_taxes)).add(String.valueOf(hours));
 	return sj.toString();
     }
 
