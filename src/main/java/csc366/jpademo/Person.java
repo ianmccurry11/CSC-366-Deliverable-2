@@ -55,7 +55,7 @@ public class Person {
     private int SSN;
 
     @Column(name="StoreId", nullable = true)
-    private int StoreId;
+    private Store StoreId;
 
     @Column(name="CompanyOwnings", nullable = true)
     private double CompanyOwnings;
@@ -149,11 +149,11 @@ public class Person {
         SSN = sSN;
     }
 
-    public int getStoreId() {
+    public Store getStoreId() {
         return StoreId;
     }
 
-    public void setStoreId(int storeId) {
+    public void setStoreId(Store storeId) {
         StoreId = storeId;
     }
 
