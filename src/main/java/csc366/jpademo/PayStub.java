@@ -67,7 +67,7 @@ public class PayStub {
     public double getFed_Taxes() {
 	return fed_taxes;
     }
-    public void setFed_Taxes(double state_taxes) {
+    public void setFed_Taxes(double fed_taxes) {
 	this.fed_taxes = fed_taxes;
     }
     public double getState_Taxes() {
