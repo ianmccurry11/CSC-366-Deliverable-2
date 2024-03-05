@@ -28,7 +28,7 @@ public class EmploymentHistory {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empl_id", nullable = true)
-    private Employee empl_id;
+    private Person empl_id;
     
     public EmploymentHistory() { }
     
@@ -68,10 +68,10 @@ public class EmploymentHistory {
 	this.title = title;
     }
 
-    public Employee getEmpl_id() {
+    public Person getEmpl_id() {
 	return empl_id;
     }
-    public void setEmpl_id(Employee empl_id) {
+    public void setEmpl_id(Person empl_id) {
 	this.empl_id = empl_id;
     }
         
