@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Column;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
@@ -18,7 +19,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "Customer", 
+        uniqueConstraints = @UniqueConstraint(columnNames = {"FirstName", "LastName", "Email"}))
 public class Customer {
 
     @Id
@@ -27,49 +29,69 @@ public class Customer {
     
     @Column(name = "CustomerID")
     private Long customerID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long CustomerID;
+
+    @Column(name="Email")
+    private String Email;
+
+    @Column(name="Address")
+    private String Address;
+
+    @Column(name="PhoneNo")
+    private String PhoneNo;
+
+    @Column(name="FirstName")
+    private String FirstName;
+
+    @Column(name="LastName")
+    private String LastName;
 
     @Column(name = "RewardsOption")
-    private boolean rewardsOption;
+    private boolean RewardsOption;
 
     @Column(name = "PaymentType")
-    private String paymentType;
+    private String PaymentType;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
-    @JoinColumn(name = "CustomerID", referencedColumnName = "ID")
-    private PersonR person;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
+    private Customer customer;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CustomerOrder> customerOrders = new ArrayList<>();
 
-    public Customer(boolean rewardsOption, String paymentType, PersonR person) {
-        this.rewardsOption = rewardsOption;
-        this.paymentType = paymentType;
-        this.person = person;
-        this.customerID = person.getId();
+    public Customer(String FirstName, String LastName, String Email, String Address, String PhoneNo, boolean RewardsOption, String PaymentType) {
+        this.RewardsOption = RewardsOption;
+        this.PaymentType = PaymentType;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+        this.Address = Address;
+        this.Email = Email;
+        this.PhoneNo = PhoneNo;
     }
 
     public Long getCustomerID() {
-        return customerID;
+        return CustomerID;
     }
 
     public void setCustomerID(Long customerID) {
-        this.customerID = customerID;
+        this.CustomerID = customerID;
     }
 
     public boolean isRewardsOption() {
-        return rewardsOption;
+        return RewardsOption;
     }
 
     public void setRewardsOption(boolean rewardsOption) {
-        this.rewardsOption = rewardsOption;
+        this.RewardsOption = rewardsOption;
     }
 
     public String getPaymentType() {
-        return paymentType;
+        return PaymentType;
     }
 
     public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
+        this.PaymentType = paymentType;
     }
 
     public List<CustomerOrder> getCustomerOrders() {
@@ -80,12 +102,12 @@ public class Customer {
         this.customerOrders = customerOrders;
     }
 
-    @Override
-    public String toString() {
-        StringJoiner sj = new StringJoiner(",", Customer.class.getSimpleName() + "[", "]");
-        sj.add(this.customerID.toString()).add(String.valueOf(this.rewardsOption)).add(this.paymentType);
-        return sj.toString();
-    }
+    // @Override
+    // public String toString() {
+    //     StringJoiner sj = new StringJoiner(",", Customer.class.getSimpleName() + "[", "]");
+    //     sj.add(this.CustomerID.toString()).add(String.valueOf(this.RewardsOption)).add(this.PaymentType);
+    //     return sj.toString();
+    // }
 
     @Override
     public boolean equals(Object o) {
@@ -93,28 +115,27 @@ public class Customer {
         if (!(o instanceof Customer)) return false;
         Customer customer = (Customer) o;
         return isRewardsOption() == customer.isRewardsOption() && Objects.equals(getCustomerID(),
-                customer.getCustomerID()) && Objects.equals(getPaymentType(), customer.getPaymentType())
-                && Objects.equals(person, customer.person);
+                customer.getCustomerID()) && Objects.equals(getPaymentType(), customer.getPaymentType());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getCustomerID(), isRewardsOption(), getPaymentType(), person);
-    }
+    // @Override
+    // public int hashCode() {
+    //     return Objects.hash(getCustomerID(), isRewardsOption(), getPaymentType());
+    // }
 
-    public String getFirstName() {
-        return person.getFirstName();
-    }
+    // public String getFirstName() {
+    //     return Customer.getFirstName();
+    // }
 
-    public String getLastName() {
-        return person.getLastName();
-    }
+    // public String getLastName() {
+    //     return person.getLastName();
+    // }
 
-    public void setFirstName(String firstName) {
-        person.setLastName(firstName);
-    }
+    // public void setFirstName(String firstName) {
+    //     person.setLastName(firstName);
+    // }
 
-    public void setLastName(String lastName) {
-        person.setLastName(lastName);
-    }
+    // public void setLastName(String lastName) {
+    //     person.setLastName(lastName);
+    // }
 }

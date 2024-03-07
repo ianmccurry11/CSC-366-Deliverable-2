@@ -63,7 +63,7 @@ public class Store {
             cascade = CascadeType.ALL, // all JPA actions (persist, remove, refresh, merge, detach) propagate to each address
             orphanRemoval = true,      // address records that are no longer attached to a person are removed
             fetch = FetchType.LAZY)
-    private List<Person> employees = new ArrayList<>();
+    private List<Employee> employees = new ArrayList<>();
 
 
     public long getId(){
@@ -149,17 +149,17 @@ public class Store {
         return this.orders;
     }
 
-    public void addEmployee(Person emp) {
+    public void addEmployee(Employee emp) {
         employees.add(emp);
         emp.setStoreId(this);
     }
     
-    public void removeEmployee(Person emp) {
+    public void removeEmployee(Employee emp) {
         employees.remove(emp);
         emp.setStoreId(this);
     }
     
-    public List<Person> getEmployees() {
+    public List<Employee> getEmployees() {
         return this.employees;
     }
 
