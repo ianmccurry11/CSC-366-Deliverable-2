@@ -26,6 +26,9 @@ import javax.validation.constraints.NotNull;
     name = "work_scheduling"
 )
 public class WorkScheduling {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id;
     
     @NotNull
     @Column(name="start_time")

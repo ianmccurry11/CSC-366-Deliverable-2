@@ -21,6 +21,9 @@ import javax.validation.constraints.NotNull;
 @Entity  // this class maps to a database table
 public class PayStub {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id;
+    
     private Date pay_period;   // note: no annotation, still included in underlying table
     private int hours;
     private int wage;

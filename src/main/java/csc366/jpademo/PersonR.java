@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity  // indicates that this class maps to a database table
 @Table(
-    name = "person",     // may be omitted for default table naming
+    name = "personr",     // may be omitted for default table naming
     uniqueConstraints = @UniqueConstraint(columnNames={"last_name", "first_name"}) // requires @Column(name=...) 
 )
 public class PersonR {

@@ -23,6 +23,10 @@ import javax.validation.constraints.NotNull;
     name = "company"
 )
 public class Company {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id;
+    
     @NotNull
     @Column(unique=true, name="name")
     private String name;

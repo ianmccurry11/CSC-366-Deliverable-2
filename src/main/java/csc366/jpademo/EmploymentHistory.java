@@ -21,6 +21,8 @@ import javax.validation.constraints.NotNull;
 @Entity  // this class maps to a database table
 public class EmploymentHistory {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id;
     private LocalDate date;   // note: no annotation, still included in underlying table
     private boolean status;
     private int salary;

@@ -22,6 +22,9 @@ import javax.persistence.OneToMany;
 public class Customer {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id;
+    
     @Column(name = "CustomerID")
     private Long customerID;
 

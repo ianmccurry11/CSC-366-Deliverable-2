@@ -25,7 +25,10 @@ import javax.validation.constraints.NotNull;
 @Table(
     name = "owner"
 )
-public class Owner {    
+public class Owner {   
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id; 
    
     @Column(name="company_ownings")
     private float company_ownings;
