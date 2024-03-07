@@ -37,7 +37,7 @@ public class WorkScheduling {
     
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_id", referencedColumnName = "id")
-    private Employee employee;
+    private Person employee;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id", referencedColumnName = "id")
@@ -45,17 +45,17 @@ public class WorkScheduling {
     
     public WorkScheduling() { }
     
-    public WorkScheduling(Employee employee, Date start_time, Date end_time, Store store) {
+    public WorkScheduling(Person employee, Date start_time, Date end_time, Store store) {
 	this.employee = employee;
     this.start_time = start_time;
     this.end_time = end_time;
     this.store = store;
     }
 
-    public Employee getEmp() {
+    public Person getEmp() {
 	return this.employee;
     }
-    public void setEmpID(Employee emp) {
+    public void setEmpID(Person emp) {
 	this.employee = emp;
     }
     

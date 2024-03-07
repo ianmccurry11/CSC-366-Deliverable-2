@@ -63,11 +63,22 @@ public class Person {
     @Column(name="CompanyName", nullable = true)
     private String companyName;
 
-    @Column(name="name", nullable = true)
-    private String name;
-
-    @Column(name="CountryofIncorperation", nullable = true)
-    private String CountryofIncorperation;
+    public Person() { }
+    
+    public Person(String username, String email, String address, String phoneNo, String FirstName, String LastName, Boolean RewardsOption, String PaymentType, int SSN, Store StoreID, double CompanyOwnings, String companyName) {
+	this.FirstName = FirstName;
+	this.LastName = LastName;
+	this.email = email;
+    this.address = address;
+    this.phoneNo = phoneNo;
+    this.username = username;
+    this.RewardsOption = RewardsOption;
+    this.PaymentType = PaymentType;
+    this.SSN = SSN;
+    this.StoreId = StoreID;
+    this.CompanyOwnings = CompanyOwnings;
+    this.companyName = companyName;
+    }
 
     public long getId() {
         return id;
@@ -172,24 +183,5 @@ public class Person {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCountryofIncorperation() {
-        return CountryofIncorperation;
-    }
-
-    public void setCountryofIncorperation(String countryofIncorperation) {
-        CountryofIncorperation = countryofIncorperation;
-    }
-
-
-
 
 }
