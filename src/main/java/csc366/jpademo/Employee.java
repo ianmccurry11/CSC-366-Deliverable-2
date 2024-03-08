@@ -19,53 +19,57 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name="Employee")
+@Table (name="employee")
 
 public class Employee {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="FirstName")
+    @Column(name="first_name")
     private String FirstName;
 
-    @Column(name="LastName")
+    @Column(name="last_name")
     private String LastName;
 
-    @Column(name="Email")
+    @Column(name="email")
     private String Email;
 
-    @Column(name="Address")
+    @Column(name="address")
     private String Address;
 
-    @Column(name="PhoneNo")
+    @Column(name="phone_no")
     private String PhoneNo;
     
     @Column(name="SSN")
     private int SSN;
 
-    @Column(name="StoreId", nullable = true)
-    private Store StoreId;
-
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EmpllId")
-    private Employee employee;
+    @JoinColumn(name="store_id")
+    private Store store;
 
-    @OneToMany(mappedBy = "EmpllId",       // join column should be in *Address*
+    // @OneToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "EmpllId")
+    // private Employee employee;
+
+    @OneToMany(mappedBy = "employee",       // join column should be in *Address*
                cascade = CascadeType.ALL, // all JPA actions (persist, remove, refresh, merge, detach) propagate to each address
-               orphanRemoval = true      // address records that are no longer attached to a person are removed
+               orphanRemoval = true,
+               fetch = FetchType.LAZY      // address records that are no longer attached to a person are removed
                )
-    private List<PayStub> paystubs = new ArrayList<>();
+    private List<PayStub> payStubs = new ArrayList<>();
 
-    @OneToMany(mappedBy = "EmpllId",       // join column should be in *Address*
+    @OneToMany(mappedBy = "employee",       // join column should be in *Address*
                cascade = CascadeType.ALL, // all JPA actions (persist, remove, refresh, merge, detach) propagate to each address
-               orphanRemoval = true      // address records that are no longer attached to a person are removed
+               orphanRemoval = true,
+               fetch = FetchType.LAZY      // address records that are no longer attached to a person are removed
                )
     private List<WorkScheduling> workSchedulings = new ArrayList<>();
 
-    @OneToMany(mappedBy = "EmpllId",       // join column should be in *Address*
+    @OneToMany(mappedBy = "employee",       // join column should be in *Address*
                cascade = CascadeType.ALL, // all JPA actions (persist, remove, refresh, merge, detach) propagate to each address
-               orphanRemoval = true      // address records that are no longer attached to a person are removed
+               orphanRemoval = true ,
+               fetch = FetchType.LAZY     // address records that are no longer attached to a person are removed
                )
     private List<EmploymentHistory> employmentHistories = new ArrayList<>();
 
@@ -78,14 +82,14 @@ public class Employee {
     this.Address = Address;
     this.PhoneNo = PhoneNo;
     this.SSN = SSN;
-    this.StoreId = StoreID;
+    this.store = StoreID;
     }
 
-    public long getEmployeeId() {
+    public long getId() {
         return id;
     }
 
-    public void setEmployeeId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -137,12 +141,12 @@ public class Employee {
         SSN = sSN;
     }
 
-    public Store getStoreId() {
-        return StoreId;
+    public Store getStore() {
+        return store;
     }
 
-    public void setStoreId(Store storeId) {
-        StoreId = storeId;
+    public void setStore(Store storeId) {
+        store = storeId;
     }
 
 

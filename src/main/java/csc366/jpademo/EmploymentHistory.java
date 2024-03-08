@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.UniqueConstraint;
@@ -19,6 +20,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity  // this class maps to a database table
+
 public class EmploymentHistory {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,11 +31,11 @@ public class EmploymentHistory {
     private int salary;
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "empl_id", nullable = true)
-    private Employee empl_id;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private Employee employee;
     
-    public EmploymentHistory() { }
+    public EmploymentHistory() {}
     
     public EmploymentHistory(LocalDate date, boolean status, int salary, String title) {
 	this.date = date;
@@ -72,17 +74,17 @@ public class EmploymentHistory {
     }
 
     public Employee getEmpl_id() {
-	return empl_id;
+	return employee;
     }
     public void setEmpl_id(Employee empl_id) {
-	this.empl_id = empl_id;
+	this.employee = empl_id;
     }
         
     @Override
     public String toString()
     {
 	StringJoiner sj = new StringJoiner("," , EmploymentHistory.class.getSimpleName() + "[" , "]");
-	sj.add(empl_id.toString()).add(date.toString()).add(String.valueOf(salary)).add(title).add(String.valueOf(status));
+	sj.add(employee.toString()).add(date.toString()).add(String.valueOf(salary)).add(title).add(String.valueOf(status));
 	return sj.toString();
     }
 
@@ -90,7 +92,7 @@ public class EmploymentHistory {
     public boolean equals(Object o) {
 	if (this == o) return true;
 	if (!(o instanceof EmploymentHistory)) return false;
-	return empl_id != null && empl_id.equals(((EmploymentHistory) o).getEmpl_id()) && date != null && date.equals(((EmploymentHistory) o).getdate());
+	return employee != null && employee.equals(((EmploymentHistory) o).getEmpl_id()) && date != null && date.equals(((EmploymentHistory) o).getdate());
     }
 
     @Override

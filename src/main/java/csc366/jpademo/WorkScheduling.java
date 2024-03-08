@@ -39,7 +39,7 @@ public class WorkScheduling {
     private Date end_time;
     
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_id", referencedColumnName = "id")
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 
     @OneToOne(fetch = FetchType.LAZY)

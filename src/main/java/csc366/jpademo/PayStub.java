@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.UniqueConstraint;
@@ -31,9 +32,9 @@ public class PayStub {
     private double state_taxes;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "empl_id", nullable = true)
-    private Employee empl_id;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private Employee employee;
     
     public PayStub() { }
     
@@ -80,18 +81,18 @@ public class PayStub {
     this.state_taxes = state_taxes;
     }
 
-    public Employee getEmpl_id() {
-	return empl_id;
+    public Employee getEmployee() {
+	return employee;
     }
-    public void setEmpl_id(Employee empl_id) {
-	this.empl_id = empl_id;
+    public void setEmployee(Employee employee) {
+	this.employee = employee;
     }
         
     @Override
     public String toString()
     {
 	StringJoiner sj = new StringJoiner("," , PayStub.class.getSimpleName() + "[" , "]");
-	sj.add(empl_id.toString()).add(pay_period.toString()).add(String.valueOf(wage)).add(String.valueOf(fed_taxes)).add(String.valueOf(state_taxes)).add(String.valueOf(hours));
+	sj.add(employee.toString()).add(pay_period.toString()).add(String.valueOf(wage)).add(String.valueOf(fed_taxes)).add(String.valueOf(state_taxes)).add(String.valueOf(hours));
 	return sj.toString();
     }
 
@@ -99,7 +100,7 @@ public class PayStub {
     public boolean equals(Object o) {
 	if (this == o) return true;
 	if (!(o instanceof PayStub)) return false;
-	return empl_id != null && empl_id.equals(((PayStub) o).getEmpl_id()) && pay_period != null && pay_period.equals(((PayStub) o).getpay_period());
+	return employee != null && employee.equals(((PayStub) o).getEmployee()) && pay_period != null && pay_period.equals(((PayStub) o).getpay_period());
     }
 
     @Override

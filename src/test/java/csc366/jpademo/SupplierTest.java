@@ -23,18 +23,12 @@ import org.slf4j.LoggerFactory;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @TestPropertySource(properties = {
-	"spring.main.banner-mode=off",
-	"spring.jpa.hibernate.ddl-auto=update",
-	"logging.level.root=ERROR",
-	"logging.level.csc366=DEBUG",
-
-	"logging.level.org.hibernate.SQL=DEBUG",
-	"logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE", // display prepared statement parameters
-	"spring.jpa.properties.hibernate.format_sql=true",
-	"spring.jpa.show-sql=false",   // prevent duplicate logging
-	"spring.jpa.properties.hibernate.show_sql=false",	
-	
-	"logging.pattern.console= %d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+	"spring.datasource.url=jdbc:h2:mem:testdb",
+    "spring.datasource.driverClassName=org.h2.Driver",
+    "spring.datasource.username=sa",
+    "spring.datasource.password=password",
+    "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect",
+    "spring.h2.console.enabled=true"
 })
 @TestMethodOrder(OrderAnnotation.class)
 public class SupplierTest {

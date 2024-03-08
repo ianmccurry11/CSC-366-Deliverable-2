@@ -19,10 +19,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity  // indicates that this class maps to a database table
 @Table(
-    name = "personr",     // may be omitted for default table naming
+    name = "person",     // may be omitted for default table naming
     uniqueConstraints = @UniqueConstraint(columnNames={"last_name", "first_name"}) // requires @Column(name=...) 
 )
-public class PersonR {
+public class Person {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -44,9 +44,9 @@ public class PersonR {
     //@OrderColumn(name = "list_idx")
     private List<Address> addresses = new ArrayList<>();
     
-    public PersonR() { }
+    public Person() { }
     
-    public PersonR(String firstName, String lastName, String email) {
+    public Person(String firstName, String lastName, String email) {
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.email = email;
@@ -94,7 +94,7 @@ public class PersonR {
     
     @Override
     public String toString() {
-	StringJoiner sj = new StringJoiner("," , PersonR.class.getSimpleName() + "[" , "]");
+	StringJoiner sj = new StringJoiner("," , Person.class.getSimpleName() + "[" , "]");
 	sj.add(id.toString()).add(firstName).add(lastName).add("addresses="+addresses.toString());
 	return sj.toString();
     }

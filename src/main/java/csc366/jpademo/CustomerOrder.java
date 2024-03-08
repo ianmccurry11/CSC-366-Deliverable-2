@@ -5,29 +5,28 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "CustomerOrder")
+@Table(name = "customer_order")
 public class CustomerOrder {
 
     @Id
-    @Column(name = "OrderID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
-    @JoinColumn(name = "StoreID", referencedColumnName = "ID")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
     private Store store;
 
-    @Column(name = "OrderDate")
+    @Column(name = "order_date")
     private Date orderDate;
 
-    @Column(name = "TotalAmount")
+    @Column(name = "total_amount")
     private double totalAmount;
 
-    @Column(name = "PaymentType")
+    @Column(name = "payment_type")
     private String paymentType;
 
     public CustomerOrder(Customer customer, Store store, Date orderDate, double totalAmount, String paymentType) {
@@ -38,6 +37,7 @@ public class CustomerOrder {
         this.paymentType = paymentType;
     }
 
+    
     public Long getOrderID() {
         return id;
     }

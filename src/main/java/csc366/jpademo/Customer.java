@@ -14,23 +14,24 @@ import javax.persistence.UniqueConstraint;
 import javax.persistence.Column;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "Customer", 
+@Table(name = "customer",
         uniqueConstraints = @UniqueConstraint(columnNames = {"FirstName", "LastName", "Email"}))
 public class Customer {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    
-    @Column(name = "CustomerID")
-    private Long customerID;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long CustomerID;
+
+    // @Column(name = "CustomerID")
+    // private Long customerID;
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // private long CustomerID;
 
     @Column(name="Email")
     private String Email;
@@ -53,9 +54,9 @@ public class Customer {
     @Column(name = "PaymentType")
     private String PaymentType;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
-    private Customer customer;
+    // @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
+    // private Customer customer;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CustomerOrder> customerOrders = new ArrayList<>();
@@ -71,11 +72,11 @@ public class Customer {
     }
 
     public Long getCustomerID() {
-        return CustomerID;
+        return id;
     }
 
     public void setCustomerID(Long customerID) {
-        this.CustomerID = customerID;
+        this.id = customerID;
     }
 
     public boolean isRewardsOption() {

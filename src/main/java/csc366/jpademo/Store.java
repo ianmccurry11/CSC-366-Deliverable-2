@@ -151,12 +151,12 @@ public class Store {
 
     public void addEmployee(Employee emp) {
         employees.add(emp);
-        emp.setStoreId(this);
+        emp.setStore(this);
     }
     
     public void removeEmployee(Employee emp) {
         employees.remove(emp);
-        emp.setStoreId(this);
+        emp.setStore(this);
     }
     
     public List<Employee> getEmployees() {
