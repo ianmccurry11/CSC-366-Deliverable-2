@@ -71,6 +71,14 @@ public class Supplier {
 	this.address = adress;
     }
 
+    public int getPhone() {
+    return phoneNumber;
+    }
+
+    public void setPhone(int Phone) {
+    this.phoneNumber = Phone;
+    }
+
     public void addContract(Contract c) {
     contracts.add(c);
     c.setSupplier(this);

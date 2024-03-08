@@ -33,7 +33,7 @@ public class PayStub {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empl_id", nullable = true)
-    private Person empl_id;
+    private Employee empl_id;
     
     public PayStub() { }
     
@@ -80,10 +80,10 @@ public class PayStub {
     this.state_taxes = state_taxes;
     }
 
-    public Person getEmpl_id() {
+    public Employee getEmpl_id() {
 	return empl_id;
     }
-    public void setEmpl_id(Person empl_id) {
+    public void setEmpl_id(Employee empl_id) {
 	this.empl_id = empl_id;
     }
         

@@ -17,8 +17,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.JoinColumn;
-
-
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity  // indicates that this class maps to a database table
@@ -29,7 +28,7 @@ public class Owner {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long OwnerID;
+    private long id;
 
     @Column(name="Email")
     private String Email;
@@ -49,10 +48,14 @@ public class Owner {
     @Column(name="CompanyName")
     private String CompanyName;
 
-    @OneToMany(mappedBy = "CompanyName",       // join column should be in *Company*
-               orphanRemoval = true,      // company records that are no longer attached to an owner are removed
-               fetch = FetchType.LAZY)
-    private List<Company> companies = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", nullable = true)
+    private Company company;
+
+    // @OneToMany(mappedBy = "owner",       // join column should be in *Company*
+    //            orphanRemoval = true,      // company records that are no longer attached to an owner are removed
+    //            fetch = FetchType.LAZY)
+    // private List<Company> companies = new ArrayList<>();
 
     // @OneToOne(cascade = CascadeType.ALL,
     //           fetch = FetchType.LAZY)
@@ -85,11 +88,11 @@ public class Owner {
     }
 
     public long getOwnerID() {
-        return OwnerID;
+        return id;
     }
 
     public void setOwnerID(long ownerID) {
-        OwnerID = ownerID;
+        id = ownerID;
     }
 
     public String getEmail() {
@@ -140,13 +143,13 @@ public class Owner {
         CompanyName = companyName;
     }
 
-    public List<Company> getCompanies() {
-        return companies;
-    }
+    // public List<Company> getCompanies() {
+    //     return companies;
+    // }
 
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
-    }
+    // public void setCompanies(List<Company> companies) {
+    //     this.companies = companies;
+    // }
 
     
 }

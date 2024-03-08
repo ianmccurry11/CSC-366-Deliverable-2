@@ -23,6 +23,7 @@ public class EmploymentHistory {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
+    
     private LocalDate date;   // note: no annotation, still included in underlying table
     private boolean status;
     private int salary;
@@ -30,7 +31,7 @@ public class EmploymentHistory {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empl_id", nullable = true)
-    private Person empl_id;
+    private Employee empl_id;
     
     public EmploymentHistory() { }
     
@@ -70,10 +71,10 @@ public class EmploymentHistory {
 	this.title = title;
     }
 
-    public Person getEmpl_id() {
+    public Employee getEmpl_id() {
 	return empl_id;
     }
-    public void setEmpl_id(Person empl_id) {
+    public void setEmpl_id(Employee empl_id) {
 	this.empl_id = empl_id;
     }
         

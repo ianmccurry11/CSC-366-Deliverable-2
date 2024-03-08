@@ -11,7 +11,7 @@ public class CustomerOrder {
     @Id
     @Column(name = "OrderID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderID;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
@@ -39,11 +39,11 @@ public class CustomerOrder {
     }
 
     public Long getOrderID() {
-        return orderID;
+        return id;
     }
 
     public void setOrderID(Long orderID) {
-        this.orderID = orderID;
+        this.id = orderID;
     }
 
     public Customer getCustomer() {

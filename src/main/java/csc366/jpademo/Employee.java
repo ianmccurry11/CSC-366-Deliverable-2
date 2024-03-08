@@ -24,7 +24,7 @@ import javax.validation.constraints.NotNull;
 public class Employee {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long EmployeeId;
+    private long id;
 
     @Column(name="FirstName")
     private String FirstName;
@@ -82,11 +82,11 @@ public class Employee {
     }
 
     public long getEmployeeId() {
-        return EmployeeId;
+        return id;
     }
 
     public void setEmployeeId(long id) {
-        this.EmployeeId = id;
+        this.id = id;
     }
 
     public String getEmail() {
