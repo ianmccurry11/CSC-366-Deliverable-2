@@ -124,19 +124,16 @@ public class Customer {
     //     return Objects.hash(getCustomerID(), isRewardsOption(), getPaymentType());
     // }
 
-    // public String getFirstName() {
-    //     return Customer.getFirstName();
-    // }
+    public String getFirstName() {
+        return this.FirstName;
+    }
 
-    // public String getLastName() {
-    //     return person.getLastName();
-    // }
+    public String getLastName() {
+        return this.LastName;
+    }
 
-    // public void setFirstName(String firstName) {
-    //     person.setLastName(firstName);
-    // }
+    public String getEmail() {
+        return this.Email;
+    }
 
-    // public void setLastName(String lastName) {
-    //     person.setLastName(lastName);
-    // }
 }
