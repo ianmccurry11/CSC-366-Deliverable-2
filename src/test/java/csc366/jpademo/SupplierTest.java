@@ -39,10 +39,16 @@ public class SupplierTest {
     private SupplierRepository supplierRepository;
 
     private final Supplier supplier = new Supplier("test", "123 street st.", 1234567890);
+    private final Contract contract = new Contract();
+    
     
     @BeforeEach
     private void setup() {
 	supplierRepository.saveAndFlush(supplier);
+    contract.setSupplier(supplier);
+    supplier.addContract(contract);
+    supplierRepository.saveAndFlush(supplier);
+
     }
     
     @Test
@@ -100,6 +106,30 @@ public class SupplierTest {
     public void testSqlFinder() {
 	Supplier s = supplierRepository.findByNameSql("test");
 	assertEquals(s.getName(), supplier.getName());
+    }
+
+    @Test
+    @Order(8)
+    public void testSupplierandContract(){
+    Supplier supplier2 = supplierRepository.findByName("test");
+
+    log.info(supplier2.toString());
+        
+    assertNotNull(supplier);
+    assertEquals(supplier.getContracts().size(), 1); 
+    }
+
+    @Test
+    @Order(9)
+    public void testJpqlJoin() {
+	Supplier s = supplierRepository.findByNameWithContractsJpql("test");
+	log.info(s.toString());
+
+	s.addContract(new Contract());
+	supplierRepository.saveAndFlush(s);
+
+	s = supplierRepository.findByNameWithContractsJpql("test");
+	log.info(s.toString());
     }
 
 }
