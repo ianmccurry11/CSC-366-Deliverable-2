@@ -65,6 +65,15 @@ public class Store {
             fetch = FetchType.LAZY)
     private List<Employee> employees = new ArrayList<>();
 
+    public Store(){}
+
+    public Store(String name, int storeNumber, String city, String state){
+        this.name = name;
+        this.storeNumber = storeNumber;
+        this.city = city;
+        this.state = state;
+    }
+
 
     public long getId(){
         return id;
@@ -171,8 +180,4 @@ public class Store {
     public void setCompany(Company c){
         this.company = c;
     }
-
-
-
-
 }

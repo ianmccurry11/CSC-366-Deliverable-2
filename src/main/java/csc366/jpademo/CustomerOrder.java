@@ -29,6 +29,8 @@ public class CustomerOrder {
     @Column(name = "payment_type")
     private String paymentType;
 
+    public CustomerOrder(){}
+
     public CustomerOrder(Customer customer, Store store, Date orderDate, double totalAmount, String paymentType) {
         this.customer = customer;
         this.store = store;

@@ -135,5 +135,4 @@ public class Customer {
     public String getEmail() {
         return this.Email;
     }
-
 }

@@ -37,6 +37,7 @@ public class Contract {
     private Person LocationManager;
 
     public Contract() {}
+    
     public Contract(Supplier supplier, Store store, Item item){
         this.supplier = supplier;
         this.store = store;
