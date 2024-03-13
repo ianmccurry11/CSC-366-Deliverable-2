@@ -53,6 +53,7 @@ public class CustomerTest {
         assertEquals(customer.getFirstName(), savedCustomer.getFirstName());
         assertEquals(customer.getLastName(), savedCustomer.getLastName());
         assertEquals(customer.getEmail(), savedCustomer.getEmail());
+        // Add more assertions for other attributes
     }
 
     @Test
@@ -64,6 +65,7 @@ public class CustomerTest {
         assertEquals(customer.getFirstName(), retrievedCustomer.getFirstName());
         assertEquals(customer.getLastName(), retrievedCustomer.getLastName());
         assertEquals(customer.getEmail(), retrievedCustomer.getEmail());
+        // Add more assertions for other attributes
     }
 
     @Test
