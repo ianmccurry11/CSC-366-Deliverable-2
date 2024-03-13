@@ -40,9 +40,28 @@ public class Item {
     @Column(name = "is_ingredient")
     private Boolean isIngredient;
 
+    // Not sure if we need this beacause the connection is in the contract class
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="contract_id", nullable = true)
     private Contract contract;
+
+    public Item(){}
+
+    public Item(String name, double cost, int quantity){
+        this.name = name;
+        this.cost = cost;
+        this.quantity = quantity;
+    }
+
+    public Item(String name, double cost, int quantity, double price, double tax_rate, String recipe, Boolean ingredient){
+        this.name = name;
+        this.cost = cost;
+        this.quantity = quantity;
+        this.price = price;
+        this.taxRate =tax_rate;
+        this.recipe = recipe;
+        this.isIngredient = ingredient;
+    }
 
     public long getId(){
         return id;

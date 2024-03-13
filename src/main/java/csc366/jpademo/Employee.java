@@ -74,7 +74,8 @@ public class Employee {
     private List<EmploymentHistory> employmentHistories = new ArrayList<>();
 
 
-    
+    public Employee(){} 
+
     public Employee(String Email, String Address, String PhoneNo, String FirstName, String LastName, int SSN, Store StoreID) {
 	this.FirstName = FirstName;
 	this.LastName = LastName;
