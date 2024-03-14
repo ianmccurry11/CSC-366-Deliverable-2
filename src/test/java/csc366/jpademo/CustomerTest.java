@@ -38,7 +38,7 @@ public class CustomerTest {
     private final Customer customer = new Customer("John", "Doe", "john.doe@email.com", "123 Main St", "555-1234", true, "Credit Card");
 
     @BeforeEach
-    private void setup() {
+    public void setup() {
         customerRepository.saveAndFlush(customer);
     }
 
@@ -102,7 +102,4 @@ public class CustomerTest {
         Customer c = customerRepository.findByNameSql("John");
         assertEquals(c.getFirstName(), customer.getFirstName());
     }
-
-    // Add more test methods for other repository queries, updates, and deletions
-
 }
