@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 
@@ -49,7 +49,7 @@ public class Store {
             fetch = FetchType.LAZY)
     private List<WorkScheduling> WorkSchedules = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
 
@@ -65,17 +65,16 @@ public class Store {
             fetch = FetchType.LAZY)
     private List<Employee> employees = new ArrayList<>();
 
-    public Store(){}
-
-    public Store(String name, int storeNumber, String city, String state){
+    public Store(String name, int storeNumber, String city, String state, Company company){
         this.name = name;
         this.storeNumber = storeNumber;
         this.city = city;
         this.state = state;
+        this.company = company;
     }
 
 
-    public long getId(){
+    public Long getId(){
         return id;
     }
 
