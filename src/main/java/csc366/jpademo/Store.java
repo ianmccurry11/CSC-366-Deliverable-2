@@ -65,6 +65,13 @@ public class Store {
             fetch = FetchType.LAZY)
     private List<Employee> employees = new ArrayList<>();
 
+    public Store(String name, int storeNumber, String city, String state){
+        this.name = name;
+        this.storeNumber = storeNumber;
+        this.city = city;
+        this.state = state; 
+    }
+
     public Store(String name, int storeNumber, String city, String state, Company company){
         this.name = name;
         this.storeNumber = storeNumber;
