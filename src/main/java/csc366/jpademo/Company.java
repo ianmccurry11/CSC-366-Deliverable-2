@@ -65,6 +65,21 @@ public class Company {
 	this.name = country;
     }
     
+    public void addStore(Store store) {
+        stores.add(store);
+        store.setCompany(null);;
+    }
+    
+    public void removeStore(Store store) {
+        stores.remove(store);
+        store.setCompany(null);
+    }
+    
+    public List<Store> getStores() {
+        return this.stores;
+    } 
+
+
     @Override
     public int hashCode() {
 	return 366;
