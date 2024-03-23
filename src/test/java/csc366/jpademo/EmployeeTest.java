@@ -81,7 +81,7 @@ public class EmployeeTest {
     @Test
     @Order(3)
     public void testDeleteEmployee() {
-	//employeeRepository.delete(employee);
+	employeeRepository.delete(employee);
 	employeeRepository.flush();
     }
 
@@ -91,11 +91,37 @@ public class EmployeeTest {
 	assertNotNull(employeeRepository.findAll());
     }
 
-    // @Test
-    // @Order(5)
-    // public void testDeletByPersonId() {
-	// Supplier s = supplierRepository.findByName("test");
-	// supplierRepository.deleteById(s.getId());
-	// supplierRepository.flush();
-    // }
+    @Test
+    @Order(5)
+    public void testDeletByPersonId() {
+	Employee e = EmployeeRepository.findByFirstName("Jack");
+	EmployeeRepository.deleteById(e.getId());
+	EmployeeRepository.flush();
+    }
+
+    @Test
+    @Order(6)
+    public void testJpqlFinder() {
+	Employee e = EmployeeRepository.findByNameJpql("Jack");
+	assertEquals(e.getFirstName, e.getFirstName)
+    }
+
+    @Test
+    @Order(7)
+    public void testSqlFinder() {
+	Employee e = EmployeeRepository.findByNameSql("Jack");
+	assertEquals(e.getFirstName, e.getFirstName);
+    }
+
+    @Test
+    @Order(8)
+    public void testEmployeeandStore(){
+    Employee employee2 = employeeRepository.findByFirstName("Jack");
+
+    log.info(employee2.toString());
+        
+    assertNotNull(employee2);
+    assertEquals(employee2.getStore(), 1); 
+    }
+
 }
